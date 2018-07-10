@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Imprimelacd</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
+        <ul class="navbar-nav ml-auto text-center">
+            <li class="nav-item active">
+                <a class="nav-link" href="#"> </a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" <%= link_to "Home", root_path %></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#"> </a>
+            </li>
+        </ul>
+    </div>
+    <div class="mx-auto my-2 order-0 order-md-1 position-relative">
+        <a class="mx-auto" href=root_path>
+        <%= link_to image_tag("logoapp.png", size: "120x120" ,class: "rounded-circle") %>
+           
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
+        <ul class="navbar-nav mr-auto text-center">
+        <% if user_signed_in? %>
+        <a class="nav-item nav-link" href="#"> <%= link_to current_user.email, edit_user_registration_path %></a>
+        <a class="nav-item nav-link" href="#"><%= link_to "Logout", destroy_user_session_path, method: :delete %></a>
+        <% else %>
+  
+        <a class="nav-item nav-link" href="#"><%= link_to "Sign Up", new_user_registration_path %></a>
+        <a class="nav-item nav-link disabled" href="#"><%= link_to "Login", new_user_session_path %></a>
+        <% end %>
+        </ul>
+    </div>
+</nav>
+
+
+
+    <%= yield %>
+  </body>
+</html>
